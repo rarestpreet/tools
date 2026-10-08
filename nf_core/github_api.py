@@ -90,7 +90,10 @@ class GitHubAPISession(requests_cache.CachedSession):
             self.auth_mode = "Bearer token with GITHUB_TOKEN"
             self.auth = BearerAuth(os.environ["GITHUB_TOKEN"])
         else:
-            log.warning("Could not find GitHub authentication token. Some API requests may fail.")
+            log.warning(
+                "Could not find GitHub authentication token. Some API requests may fail. "
+                "See https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens for information on setting up GitHub authentication (or use GH CLI)."
+            )
 
         log.debug(f"Using GitHub auth: {self.auth_mode}")
 
